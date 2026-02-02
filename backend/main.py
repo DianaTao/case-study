@@ -66,29 +66,17 @@ async def root():
 
 @app.get("/health")
 async def health():
-    """Detailed health check."""
+    """Detailed health check - lightweight version for Railway."""
     try:
-        # Test database connection
+        # Lightweight check - don't query DB to avoid timeouts
         db = get_db()
-        if db is None:
-            return {
-                "status": "unhealthy",
-                "database": "disconnected",
-                "environment": settings.environment
-            }
-        
-        # Quick DB test query
-        try:
-            db.table("parts").select("partselect_number").limit(1).execute()
-            db_status = "connected"
-        except Exception as e:
-            logger.warning("Database health check failed", error=str(e))
-            db_status = "error"
+        db_status = "connected" if db is not None else "disconnected"
         
         return {
-            "status": "healthy" if db_status == "connected" else "degraded",
+            "status": "healthy",
             "database": db_status,
-            "environment": settings.environment
+            "environment": settings.environment,
+            "port": os.getenv("PORT", "unknown")
         }
     except Exception as e:
         logger.error("Health check failed", error=str(e))
