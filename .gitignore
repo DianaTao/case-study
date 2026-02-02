@@ -47,5 +47,6 @@ ENV/
 *.tsbuildinfo
 next-env.d.ts
 
-# Design documentation (internal use only)
-DESIGN.md
+# Documentation files (keep local, don't push to GitHub)
+*.md
+!README.md
