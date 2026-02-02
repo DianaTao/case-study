@@ -7,21 +7,10 @@
 [![Next.js](https://img.shields.io/badge/Next.js-15.5-black.svg)](https://nextjs.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)
 
+
+
 ---
 
-
-## 📋 Documentation
-
-- **[FREE_DEPLOYMENT.md](./FREE_DEPLOYMENT.md)** - 🆓 Complete guide to free deployment options
-- **[RAILWAY_URL_GUIDE.md](./RAILWAY_URL_GUIDE.md)** - 🔗 How to find your Railway backend URL
-- **[VERCEL_ENV_SETUP.md](./VERCEL_ENV_SETUP.md)** - 🔧 Fix "localhost:8000" errors in Vercel
-- **[FIX_CORS.md](./FIX_CORS.md)** - 🚫 Fix CORS errors between Vercel and Railway
-- **[FIX_RAILWAY_PORT.md](./FIX_RAILWAY_PORT.md)** - 🔌 Fix Railway "$PORT is not a valid integer" errors
-- **[RUN_GUIDE.md](./RUN_GUIDE.md)** - Complete setup instructions
-- **[VERCEL_DEPLOY.md](./VERCEL_DEPLOY.md)** - Deploy frontend to Vercel
-- **[backend/BACKEND_DEPLOY.md](./backend/BACKEND_DEPLOY.md)** - Deploy backend (Railway/Render/Fly.io)
-- **[GUARDRAILS.md](./GUARDRAILS.md)** - Production-quality agent behavior rules
-- **[DESIGN.md](./DESIGN.md)** - System architecture and technical details
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -85,7 +74,7 @@ User: "dishwasher not drying dishes"
 → Returns: Heating Element, Vent Assembly, etc.
 ```
 
-### Dynamic Installation Instructions ✨ **NEW**
+### Dynamic Installation Instructions 
 Real-time scraping of PartSelect pages + OpenAI summarization:
 
 ```
@@ -96,7 +85,7 @@ User: "How can I install part number PS11752778?"
 → Returns: Formatted installation guide
 ```
 
-### Dynamic Compatibility Checking ✨ **NEW**
+### Dynamic Compatibility Checking 
 Real-time scraping + OpenAI-powered compatibility verification:
 
 ```
@@ -152,17 +141,9 @@ Python FastAPI Backend (Agent Orchestrator)
 
 ---
 
-## 📚 Documentation
-
-| Document | Purpose |
-|----------|---------|
-| **[README.md](./README.md)** | 👈 Quick start (this file) |
-| **[DESIGN.md](./DESIGN.md)** | 📐 Comprehensive system design |
-| **[RUN_GUIDE.md](./RUN_GUIDE.md)** | 🚀 Detailed setup & testing guide |
-
 ---
 
-## 🎯 What This Does
+## 🎯 Solution Overview
 
 ### For Users
 - **Find parts** by description, part number, or symptom
@@ -170,13 +151,15 @@ Python FastAPI Backend (Agent Orchestrator)
 - **Troubleshoot issues** with interactive Q&A
 - **View installation** guidance and videos
 - **Add to cart** and checkout
+- **Zero-click onboarding** - No appliance selection required, auto-detects from natural language
 
-### For Developers
-- **Natural language parsing** - Robust regex entity extraction
-- **Symptom-to-part mapping** - Database-driven recommendations
-- **Agentic architecture** - Intent classification + tool calling
-- **Live web scraping** - On-demand price/stock updates
-- **Production-ready** - Docker, error handling, rate limiting
+### Implementation Highlights
+- **Natural language parsing** - Robust regex entity extraction with LLM fallback
+- **Symptom-to-part mapping** - Database-driven recommendations from scraped data
+- **Agentic architecture** - Modular sub-agent pattern with intent classification
+- **Live web scraping** - On-demand price/stock updates using Playwright
+- **Context-aware** - Conversation history lookup for missing entities
+- **Production-ready** - Docker, error handling, rate limiting, graceful degradation
 
 ---
 
@@ -224,7 +207,17 @@ Different outcomes based on user answers:
 
 ## 🧪 Testing
 
-### Quick Test Queries
+### Example Inquiries (Case Study Requirements)
+
+These are the three example inquiries from the case study requirements:
+
+| Query | Expected Behavior |
+|-------|-------------------|
+| **"How can I install part number PS11752778?"** | ✅ Scrapes installation instructions, shows InstallStepsCard with summary, difficulty, tools, and collapsible steps |
+| **"Is this part compatible with my WDT780SAEM1 model?"** | ✅ Model page scraping verification, returns CompatibilityCard with confidence level and evidence |
+| **"The ice maker on my Whirlpool fridge is not working. How can I fix it?"** | ✅ Auto-detects appliance/brand/symptom, shows symptom-based parts, offers troubleshooting flow |
+
+### Additional Test Queries
 
 | Query | Expected Behavior |
 |-------|-------------------|
@@ -232,7 +225,7 @@ Different outcomes based on user answers:
 | "My dishwasher is not draining" | ✅ Shows drain pump, filter parts |
 | "PS11701542" | ✅ Direct part lookup with details |
 | "Is PS11701542 compatible with WRS325SDHZ00?" | ✅ Compatibility check |
-| "Can you help with my washing machine?" | ✅ Out-of-scope rejection |
+| "Can you help with my washing machine?" | ✅ Out-of-scope rejection with helpful message |
 
 ### Watch Backend Terminal
 
@@ -293,37 +286,21 @@ python backend/seed/load_seed_catalog.py
 
 ---
 
-## 🤝 Contributing
-
-See [DESIGN.md](./DESIGN.md) for:
-- Detailed architecture
-- Data model schemas
-- API contracts
-- Component hierarchy
-- Deployment guides
 
 ---
 
-## 📝 License
+## 🎯 Quick Navigation
 
-This is a case study project. See repository for license details.
+1. **New here?** Start with [Quick Start](#-quick-start) above
+2. **Want architecture details?** Read [DESIGN.md](./DESIGN.md) for comprehensive system design
+3. **Need setup help?** Check [RUN_GUIDE.md](./RUN_GUIDE.md) for detailed instructions
+4. **Ready to deploy?** See [FREE_DEPLOYMENT.md](./FREE_DEPLOYMENT.md) for deployment guides
 
----
 
-## 🙏 Acknowledgments
 
-- PartSelect for the excellent parts catalog
-- FastAPI for the Python framework
-- Next.js for the frontend framework
-- Supabase for database infrastructure
-- OpenAI for LLM capabilities
+This implementation demonstrates:
+- ✅ **Extensible architecture** - Modular sub-agent pattern for easy extension
+- ✅ **Scalable design** - Database-driven with caching and rate limiting
+- ✅ **User-focused UX** - Zero-click onboarding, context-aware responses
+- ✅ **Production-ready** - Error handling, graceful degradation, comprehensive documentation
 
----
-
-**🎉 Ready to Build!**
-
-1. **New here?** Start with [Quick Start](#-quick-start)
-2. **Want details?** Read [DESIGN.md](./DESIGN.md)
-3. **Need help?** Check [RUN_GUIDE.md](./RUN_GUIDE.md)
-
-**Let's build! 🚀**
