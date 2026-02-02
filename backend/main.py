@@ -93,9 +93,12 @@ if __name__ == "__main__":
     import os
     # Use PORT from environment (Railway/Render) or fallback to config
     port = int(os.getenv("PORT", settings.port))
+    # Disable reload in production (Railway/Render)
+    is_development = os.getenv("ENVIRONMENT", "production").lower() == "development"
     uvicorn.run(
         "main:app",
         host=settings.host,
         port=port,
-        reload=settings.environment == "development"
+        reload=is_development,
+        log_level="info"
     )

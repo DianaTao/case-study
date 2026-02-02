@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     # Server
     port: int = 8000
     host: str = "0.0.0.0"
-    environment: str = "development"
+    environment: str = os.getenv("ENVIRONMENT", "production")  # Default to production for Railway
     
     # CORS - can be set via environment variable (comma-separated) or defaults to localhost
     _allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "")
