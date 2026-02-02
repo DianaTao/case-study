@@ -13,6 +13,7 @@
 ## 📋 Documentation
 
 - **[FREE_DEPLOYMENT.md](./FREE_DEPLOYMENT.md)** - 🆓 Complete guide to free deployment options
+- **[VERCEL_ENV_SETUP.md](./VERCEL_ENV_SETUP.md)** - 🔧 Fix "localhost:8000" errors in Vercel
 - **[RUN_GUIDE.md](./RUN_GUIDE.md)** - Complete setup instructions
 - **[VERCEL_DEPLOY.md](./VERCEL_DEPLOY.md)** - Deploy frontend to Vercel
 - **[backend/BACKEND_DEPLOY.md](./backend/BACKEND_DEPLOY.md)** - Deploy backend (Railway/Render/Fly.io)

@@ -169,6 +169,8 @@ For local development, run backend locally and use `http://localhost:8000` in fr
 
 ## Step 3: Configure Environment Variables
 
+⚠️ **IMPORTANT**: If you see errors about `localhost:8000`, your environment variables are not set correctly. See [VERCEL_ENV_SETUP.md](./VERCEL_ENV_SETUP.md) for detailed troubleshooting.
+
 ### Required Environment Variables
 
 Add these in Vercel Dashboard → Project → Settings → Environment Variables:

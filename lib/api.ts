@@ -1,7 +1,12 @@
 import type { ChatRequest, ChatResponse, Part, Cart } from './types';
 
 // Python backend URL
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+// In production, NEXT_PUBLIC_API_URL must be set in Vercel environment variables
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || (
+  typeof window !== 'undefined' 
+    ? 'http://localhost:8000' // Only use localhost in browser during development
+    : 'http://localhost:8000' // Server-side fallback
+);
 
 interface RequestOptions {
   method?: string;
@@ -33,11 +38,35 @@ export class ApiClient {
     try {
       response = await attemptFetch(normalizedBase);
     } catch (error) {
-      const fallbackBase = 'http://127.0.0.1:8000';
-      if (normalizedBase !== fallbackBase) {
-        response = await attemptFetch(fallbackBase);
+      // Only try localhost fallback in development (browser only)
+      if (typeof window !== 'undefined' && normalizedBase.includes('localhost')) {
+        const fallbackBase = 'http://127.0.0.1:8000';
+        if (normalizedBase !== fallbackBase) {
+          try {
+            response = await attemptFetch(fallbackBase);
+          } catch (fallbackError) {
+            throw new Error(
+              'API is unreachable. ' +
+              (process.env.NEXT_PUBLIC_API_URL 
+                ? `Check if backend is running at ${process.env.NEXT_PUBLIC_API_URL}`
+                : 'NEXT_PUBLIC_API_URL environment variable is not set. Please configure it in Vercel.')
+            );
+          }
+        } else {
+          throw new Error(
+            'API is unreachable. ' +
+            (process.env.NEXT_PUBLIC_API_URL 
+              ? `Backend URL: ${process.env.NEXT_PUBLIC_API_URL}`
+              : 'NEXT_PUBLIC_API_URL environment variable is not set. Please configure it in Vercel.')
+          );
+        }
       } else {
-        throw new Error('API is unreachable. Is the backend running on port 8000?');
+        throw new Error(
+          `API is unreachable at ${normalizedBase}. ` +
+          (process.env.NEXT_PUBLIC_API_URL 
+            ? 'Check if backend is running and CORS is configured correctly.'
+            : 'NEXT_PUBLIC_API_URL environment variable is not set. Please configure it in Vercel.')
+        );
       }
     }
 
