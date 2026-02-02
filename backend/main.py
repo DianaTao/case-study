@@ -54,20 +54,13 @@ app.include_router(cart.router, prefix="/api/cart", tags=["cart"])
 
 @app.get("/")
 async def root():
-    """Root endpoint - simple health check."""
-    try:
-        return {
-            "status": "ok",
-            "service": "PartSelect Chat Agent API",
-            "version": "1.0.0",
-            "message": "API is running"
-        }
-    except Exception as e:
-        logger.error("Root endpoint failed", error=str(e))
-        return {
-            "status": "error",
-            "error": str(e)
-        }
+    """Root endpoint - simple health check for Railway."""
+    return {
+        "status": "ok",
+        "service": "PartSelect Chat Agent API",
+        "version": "1.0.0",
+        "message": "API is running"
+    }
 
 
 @app.get("/health")
