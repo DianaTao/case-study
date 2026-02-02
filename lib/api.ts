@@ -61,12 +61,10 @@ export class ApiClient {
           );
         }
       } else {
-        throw new Error(
-          `API is unreachable at ${normalizedBase}. ` +
-          (process.env.NEXT_PUBLIC_API_URL 
-            ? 'Check if backend is running and CORS is configured correctly.'
-            : 'NEXT_PUBLIC_API_URL environment variable is not set. Please configure it in Vercel.')
-        );
+        const errorMsg = process.env.NEXT_PUBLIC_API_URL 
+          ? `API is unreachable at ${normalizedBase}. This is likely a CORS issue. Please ensure the backend's ALLOWED_ORIGINS environment variable includes your Vercel domain (e.g., ${typeof window !== 'undefined' ? window.location.origin : 'your-vercel-domain.vercel.app'}).`
+          : 'NEXT_PUBLIC_API_URL environment variable is not set. Please configure it in Vercel.';
+        throw new Error(errorMsg);
       }
     }
 
