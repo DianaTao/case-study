@@ -1,6 +1,6 @@
 """Compatibility checking API."""
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
 import structlog
 
@@ -11,6 +11,8 @@ router = APIRouter()
 
 
 class CompatibilityRequest(BaseModel):
+    model_config = ConfigDict(protected_namespaces=())  # Allow model_number field
+    
     partselect_number: str
     model_number: str
 

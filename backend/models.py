@@ -1,5 +1,5 @@
 """Pydantic models for API."""
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional, List
 from datetime import datetime
 
@@ -32,6 +32,8 @@ class Part(BaseModel):
 
 class Model(BaseModel):
     """Model model."""
+    model_config = ConfigDict(protected_namespaces=())  # Allow model_number and model_url fields
+    
     id: Optional[str] = None
     appliance_type: str
     model_number: str
