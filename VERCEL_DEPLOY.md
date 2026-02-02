@@ -2,6 +2,25 @@
 
 This guide covers deploying the PartSelect Chat Agent to Vercel.
 
+## ⚠️ Important: Backend Deployment
+
+**Can you deploy the backend on Vercel?** 
+
+**Short answer**: Technically yes, but **NOT recommended** for this project.
+
+**Why?**
+- Your backend uses **Playwright** for web scraping, which requires large browser binaries (~300MB)
+- Vercel serverless functions have size and execution time limits
+- Playwright doesn't work well in serverless environments
+
+**Recommended Approach**:
+- ✅ **Frontend**: Deploy to Vercel (perfect fit)
+- ✅ **Backend**: Deploy separately to Railway/Render/Fly.io (see [backend/BACKEND_DEPLOY.md](./backend/BACKEND_DEPLOY.md))
+
+If you want to try deploying backend on Vercel anyway, see [VERCEL_FULL_DEPLOY.md](./VERCEL_FULL_DEPLOY.md) (not recommended).
+
+---
+
 ## 🚀 Quick Start
 
 1. **Deploy Backend** (Railway/Render/Fly.io) → Get backend URL
@@ -15,8 +34,8 @@ This guide covers deploying the PartSelect Chat Agent to Vercel.
 ## Architecture Overview
 
 This application consists of:
-- **Frontend**: Next.js 15 (deploys to Vercel)
-- **Backend**: Python FastAPI (deploy separately - see options below)
+- **Frontend**: Next.js 15 (deploys to Vercel) ✅
+- **Backend**: Python FastAPI (deploy separately - see options below) ⚠️
 
 ## Prerequisites
 
@@ -26,7 +45,9 @@ This application consists of:
 
 ## Step 1: Deploy Backend (Required First)
 
-The Python FastAPI backend must be deployed separately. Choose one:
+**📖 For detailed backend deployment instructions, see [backend/BACKEND_DEPLOY.md](./backend/BACKEND_DEPLOY.md)**
+
+The Python FastAPI backend must be deployed separately. Quick start options:
 
 ### Option A: Railway (Recommended)
 

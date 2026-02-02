@@ -19,8 +19,13 @@ class Settings(BaseSettings):
     host: str = "0.0.0.0"
     environment: str = "development"
     
-    # CORS
-    allowed_origins: List[str] = ["http://localhost:3000"]
+    # CORS - can be set via environment variable (comma-separated) or defaults to localhost
+    _allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "")
+    allowed_origins: List[str] = (
+        [origin.strip() for origin in _allowed_origins_env.split(",") if origin.strip()]
+        if _allowed_origins_env
+        else ["http://localhost:3000"]
+    )
     
     # Supported appliances (config-based for extensibility)
     supported_appliances: List[str] = ["refrigerator", "dishwasher"]

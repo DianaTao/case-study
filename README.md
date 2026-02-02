@@ -12,8 +12,10 @@
 
 ## 📋 Documentation
 
+- **[FREE_DEPLOYMENT.md](./FREE_DEPLOYMENT.md)** - 🆓 Complete guide to free deployment options
 - **[RUN_GUIDE.md](./RUN_GUIDE.md)** - Complete setup instructions
-- **[VERCEL_DEPLOY.md](./VERCEL_DEPLOY.md)** - Deploy to Vercel guide
+- **[VERCEL_DEPLOY.md](./VERCEL_DEPLOY.md)** - Deploy frontend to Vercel
+- **[backend/BACKEND_DEPLOY.md](./backend/BACKEND_DEPLOY.md)** - Deploy backend (Railway/Render/Fly.io)
 - **[GUARDRAILS.md](./GUARDRAILS.md)** - Production-quality agent behavior rules
 - **[DESIGN.md](./DESIGN.md)** - System architecture and technical details
 ## 🚀 Quick Start
