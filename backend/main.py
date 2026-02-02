@@ -6,7 +6,7 @@ import structlog
 
 from config import settings
 from api import chat, parts, compatibility, cart
-from database import init_db
+from database import init_db, get_db
 
 # Setup logging
 logger = structlog.get_logger()
@@ -58,11 +58,37 @@ async def root():
 @app.get("/health")
 async def health():
     """Detailed health check."""
-    return {
-        "status": "healthy",
-        "database": "connected",
-        "environment": settings.environment
-    }
+    try:
+        # Test database connection
+        db = get_db()
+        if db is None:
+            return {
+                "status": "unhealthy",
+                "database": "disconnected",
+                "environment": settings.environment
+            }
+        
+        # Quick DB test query
+        try:
+            db.table("parts").select("partselect_number").limit(1).execute()
+            db_status = "connected"
+        except Exception as e:
+            logger.warning("Database health check failed", error=str(e))
+            db_status = "error"
+        
+        return {
+            "status": "healthy" if db_status == "connected" else "degraded",
+            "database": db_status,
+            "environment": settings.environment
+        }
+    except Exception as e:
+        logger.error("Health check failed", error=str(e))
+        return {
+            "status": "unhealthy",
+            "database": "unknown",
+            "environment": settings.environment,
+            "error": str(e)
+        }
 
 
 if __name__ == "__main__":

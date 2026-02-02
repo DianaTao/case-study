@@ -34,7 +34,20 @@ async def check_compatibility(request: CompatibilityRequest):
     We ONLY return 'fits' if we have exact data from model pages.
     """
     try:
+        # Validate input
+        if not request.partselect_number or not request.model_number:
+            raise HTTPException(
+                status_code=400, 
+                detail="Both partselect_number and model_number are required"
+            )
+        
         db = get_db()
+        
+        if db is None:
+            raise HTTPException(
+                status_code=503,
+                detail="Database connection unavailable"
+            )
         
         # Normalize model number (uppercase, remove spaces/dashes)
         normalized_model = request.model_number.upper().replace(" ", "").replace("-", "")
@@ -90,6 +103,19 @@ async def check_compatibility(request: CompatibilityRequest):
                 reason=f"We don't have compatibility data for part {request.partselect_number} with model {request.model_number}. Please verify the model number or check PartSelect.com directly.",
             )
         
+    except HTTPException:
+        # Re-raise HTTP exceptions as-is
+        raise
     except Exception as e:
-        logger.error("Compatibility check failed", part=request.partselect_number, model=request.model_number, error=str(e))
-        raise HTTPException(status_code=500, detail="Compatibility check failed")
+        logger.error(
+            "Compatibility check failed", 
+            part=request.partselect_number, 
+            model=request.model_number, 
+            error=str(e),
+            error_type=type(e).__name__
+        )
+        # Return a more helpful error message
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Compatibility check failed: {str(e)}"
+        )
