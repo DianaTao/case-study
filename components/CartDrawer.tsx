@@ -59,9 +59,9 @@ export function CartDrawer({ isOpen, onClose, cart, onUpdateQuantity }: CartDraw
             </div>
           ) : (
             <div className="space-y-4">
-              {cart.items.map((item) => (
+              {cart.items.map((item, index) => (
                 <div
-                  key={item.partselectNumber}
+                  key={`${item.partselectNumber}-${index}-${item.addedAt?.getTime() || index}`}
                   className="border border-partselect-border rounded-lg p-3"
                 >
                   <div className="flex gap-3">
