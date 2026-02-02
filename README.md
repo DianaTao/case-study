@@ -13,7 +13,10 @@
 ## 📋 Documentation
 
 - **[FREE_DEPLOYMENT.md](./FREE_DEPLOYMENT.md)** - 🆓 Complete guide to free deployment options
+- **[RAILWAY_URL_GUIDE.md](./RAILWAY_URL_GUIDE.md)** - 🔗 How to find your Railway backend URL
 - **[VERCEL_ENV_SETUP.md](./VERCEL_ENV_SETUP.md)** - 🔧 Fix "localhost:8000" errors in Vercel
+- **[FIX_CORS.md](./FIX_CORS.md)** - 🚫 Fix CORS errors between Vercel and Railway
+- **[FIX_RAILWAY_PORT.md](./FIX_RAILWAY_PORT.md)** - 🔌 Fix Railway "$PORT is not a valid integer" errors
 - **[RUN_GUIDE.md](./RUN_GUIDE.md)** - Complete setup instructions
 - **[VERCEL_DEPLOY.md](./VERCEL_DEPLOY.md)** - Deploy frontend to Vercel
 - **[backend/BACKEND_DEPLOY.md](./backend/BACKEND_DEPLOY.md)** - Deploy backend (Railway/Render/Fly.io)

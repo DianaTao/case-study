@@ -14,9 +14,9 @@ This means `NEXT_PUBLIC_API_URL` is not set in Vercel.
 ### Step 1: Get Your Backend URL
 
 First, make sure your backend is deployed. You should have a URL like:
-- `https://your-app.railway.app`
-- `https://your-app.onrender.com`
-- `https://your-app.fly.dev`
+- `https://your-app.railway.app` (Railway) - **See [RAILWAY_URL_GUIDE.md](./RAILWAY_URL_GUIDE.md) for how to find it**
+- `https://your-app.onrender.com` (Render)
+- `https://your-app.fly.dev` (Fly.io)
 
 ### Step 2: Set Environment Variable in Vercel
 
@@ -103,6 +103,7 @@ git push
 4. **Check CORS on backend**:
    - Make sure your backend's `ALLOWED_ORIGINS` includes your Vercel domain
    - Example: `https://your-app.vercel.app`
+   - **See [FIX_CORS.md](./FIX_CORS.md) for detailed CORS troubleshooting**
    - See [backend/BACKEND_DEPLOY.md](./backend/BACKEND_DEPLOY.md) for CORS setup
 
 ### Environment variable not taking effect?

@@ -67,9 +67,12 @@ async def health():
 
 if __name__ == "__main__":
     import uvicorn
+    import os
+    # Use PORT from environment (Railway/Render) or fallback to config
+    port = int(os.getenv("PORT", settings.port))
     uvicorn.run(
         "main:app",
         host=settings.host,
-        port=settings.port,
+        port=port,
         reload=settings.environment == "development"
     )

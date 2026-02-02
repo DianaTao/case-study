@@ -52,8 +52,9 @@ Railway auto-detects Python and handles most configuration automatically.
 
 6. **Set Start Command** (if needed):
    - Go to Settings → Deploy
-   - Start Command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-   - Railway usually auto-detects this, but verify
+   - Start Command: `python -m uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}`
+   - **OR** Railway will auto-detect `Procfile` if present in `backend/` directory
+   - **See [FIX_RAILWAY_PORT.md](../FIX_RAILWAY_PORT.md) if you get "$PORT is not a valid integer" errors**
 
 7. **Deploy**:
    - Railway will automatically deploy on every push to your main branch
@@ -63,7 +64,9 @@ Railway auto-detects Python and handles most configuration automatically.
 8. **Get Your Backend URL**:
    - Railway provides a public URL automatically
    - Go to Settings → Networking → Public Domain
-   - Copy this URL for your frontend's `NEXT_PUBLIC_API_URL`
+   - Copy this URL (e.g., `https://your-app-name.up.railway.app`)
+   - Use this as your `NEXT_PUBLIC_API_URL` in Vercel
+   - **See [RAILWAY_URL_GUIDE.md](../RAILWAY_URL_GUIDE.md) for detailed instructions**
 
 ### Railway Pricing:
 - **Free Tier**: $5 credit/month (enough for small projects)
