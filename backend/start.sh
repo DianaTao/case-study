@@ -13,5 +13,5 @@ echo "Working directory: $(pwd)"
 echo "Python version: $(python --version)"
 echo "Environment: $ENVIRONMENT"
 
-# Run uvicorn with the port (no reload in production)
-exec python -m uvicorn main:app --host 0.0.0.0 --port "$PORT" --no-reload
+# Run uvicorn with the port (reload is disabled by default, only use --reload for development)
+exec python -m uvicorn main:app --host 0.0.0.0 --port "$PORT"
