@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base fonts */
+  --ps-font-sans: ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Core colors */
+  --ps-bg: #F6F7F9;
+  --ps-surface: #FFFFFF;
+  --ps-text: #0F172A;
+  --ps-text-muted: #475569;
+  --ps-border: #D1D5DB;
+
+  /* Primary CTA */
+  --ps-primary: rgb(70, 117, 118);
+  --ps-primary-hover: rgb(55, 96, 97);
+  --ps-primary-contrast: #FFFFFF;
+
+  /* Link */
+  --ps-link: #0B5EA8;
+  --ps-link-hover: #094F8D;
+
+  /* Success / badges */
+  --ps-success-bg: #E7F6EE;
+  --ps-success-text: #166534;
+
+  /* Divider / border */
+  --ps-divider: #D1D5DB;
+
+  /* Spacing */
+  --ps-spacing-sm: 8px;
+  --ps-spacing-md: 16px;
+  --ps-spacing-lg: 24px;
+
+  /* Radius */
+  --ps-radius: 12px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--ps-font-sans);
+  font-size: 14px;
+  background-color: var(--ps-bg);
+  color: var(--ps-text);
+}
+
+/* Links */
+a {
+  color: var(--ps-link);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--ps-primary-hover);
+  text-decoration: underline;
+}
+
+/* Dividers */
+.ps-divider {
+  height: 1px;
+  background: var(--ps-divider);
+  margin: var(--ps-spacing-md) 0;
+}
+
+/* Primary button style */
+.btn-primary {
+  background: var(--ps-primary);
+  color: var(--ps-primary-contrast);
+  font-weight: 700;
+  border: none;
+  padding: 12px 16px;
+  border-radius: var(--ps-radius);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: var(--ps-primary-hover);
+}
+
+/* Card surface */
+.surface-card {
+  background: var(--ps-surface);
+  border: 1px solid var(--ps-border);
+  border-radius: var(--ps-radius);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08);
+  padding: var(--ps-spacing-md);
+}
+
+/* Muted text */
+.text-muted {
+  color: var(--ps-text-muted);
+}
+
+.badge-success {
+  background: var(--ps-success-bg);
+  color: var(--ps-success-text);
+  padding: 4px 8px;
+  border-radius: var(--ps-radius);
+  font-weight: 700;
+  font-size: 12px;
+  display: inline-block;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}

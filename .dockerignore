@@ -1,0 +1,49 @@
+# Node
+node_modules
+npm-debug.log
+.next
+out
+build
+dist
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv
+env
+ENV
+
+# Environment
+.env
+.env.local
+.env*.local
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs
+
+# Test
+coverage
+.coverage
+*.cover
+
+# Cache
+.cache
+*.cache
