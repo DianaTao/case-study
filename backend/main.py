@@ -17,7 +17,13 @@ logger = structlog.get_logger()
 async def lifespan(app: FastAPI):
     """Startup and shutdown events."""
     logger.info("Starting PartSelect Chat Agent API")
-    init_db()
+    try:
+        init_db()
+        logger.info("Database connection initialized")
+        logger.info("Application startup complete")
+    except Exception as e:
+        logger.error("Failed to initialize application", error=str(e))
+        raise
     yield
     logger.info("Shutting down")
 
