@@ -1,0 +1,23 @@
+# Backend files (deploy separately)
+backend/
+*.py
+requirements.txt
+Dockerfile
+docker-compose*.yml
+
+# Python virtual environment
+venv/
+__pycache__/
+
+# Database migrations (handled by Supabase)
+supabase/migrations/
+
+# Documentation (optional - remove if you want to include)
+DESIGN.md
+GUARDRAILS.md
+RUN_GUIDE.md
+
+# Environment files
+.env
+.env.local
+.env*.local

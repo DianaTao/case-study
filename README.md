@@ -13,6 +13,7 @@
 ## 📋 Documentation
 
 - **[RUN_GUIDE.md](./RUN_GUIDE.md)** - Complete setup instructions
+- **[VERCEL_DEPLOY.md](./VERCEL_DEPLOY.md)** - Deploy to Vercel guide
 - **[GUARDRAILS.md](./GUARDRAILS.md)** - Production-quality agent behavior rules
 - **[DESIGN.md](./DESIGN.md)** - System architecture and technical details
 ## 🚀 Quick Start
